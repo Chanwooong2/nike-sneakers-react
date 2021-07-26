@@ -1,3 +1,7 @@
+:root {
+	--direction: 1;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +9,34 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #291a60;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.moving {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-image: url("./img/nike-dunk-s.png");
+	background-repeat: repeat;
+	background-position: center;
+	animation : moveBg 10s linear infinite;
+	transform: scaleX(var(--direction));
+}
+
+@keyframes moveBg {
+	0% {background-position: 300px -300px;}
+	100% {background-position: -300px 300px;}
 }
