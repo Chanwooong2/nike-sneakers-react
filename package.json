@@ -1,11 +1,24 @@
 {
-  "name": "template",
+  "name": "nike-sneakers",
+  "description": "Get releasing information of Nike sneakers & Inform us",
+  "keywords": [
+    "nike",
+    "sneakers",
+    "alert",
+    "email"
+  ],
+  "author": "Chanwooong2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
+    "node-cron": "*",
+    "nodemailer": "^6.6.3",
+    "nodemailer-smtp-transport": "^2.7.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
