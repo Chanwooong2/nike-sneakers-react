@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './app.css';
 import SneakersList from './components/sneakersList/sneakersList';
 import sneakersJsonData from './data/sneakersInformation.json'
