@@ -1,24 +1,23 @@
-getMailContents =()=> {
+const getMailContents =()=> {
     const sneakers = getSneakersJsonData();
     const todaySneakers = getTodaySneakersList(sneakers);
     const mailQueue = getMailQueue(todaySneakers);
-
+    
     return mailQueue;
 }
 
-getSneakersJsonData =()=> {
-    const fs = require('fs');
-    const data = fs.readFileSync('../data/sneakersInformation.json', 'utf8').slice(9);
-    const sneakers = JSON.parse(data);
-
+const getSneakersJsonData =()=> {
+    const sneakers = require('../data/sneakersInformation.json');
     // 시간순 정렬
     sneakers.sort((a, b) => (new Date(a.drawYear+"/"+a.drawDate+" "+a.drawStartTime)) - (new Date(b.drawYear+"/"+b.drawDate+" "+b.drawStartTime)));
 
     return sneakers;
 }
 
+console.log(getSneakersJsonData())
+
 // 오늘 드로우 대상 리스트
-getTodaySneakersList =(sneakers)=> {
+const getTodaySneakersList =(sneakers)=> {
     const date = new Date();
     let today;
     
@@ -38,7 +37,7 @@ getTodaySneakersList =(sneakers)=> {
     return todaySneakers;
 }
 
-getMailQueue =(todaySneakers)=> {
+const getMailQueue =(todaySneakers)=> {
     const mailQueue = [];
     let criteria = todaySneakers.length !== 0 ? todaySneakers[0].drawStartTime : "";
     let tmpArr = [];
@@ -59,4 +58,4 @@ getMailQueue =(todaySneakers)=> {
     return mailQueue;
 }
 
-module.exports = {getMailContents};
+export default {getMailContents, getSneakersJsonData};
