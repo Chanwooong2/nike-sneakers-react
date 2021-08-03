@@ -19,6 +19,11 @@ const scrapingDetailPage =(url)=> {
 	});
 }
 
+const updateSneakersJson =()=> {
+	var resultDataFile = fs.createWriteStream(FILEPATH, {flags : 'w+'});
+	resultDataFile.write(JSON.stringify(parsingObjs));
+}
+
 const scrapingSneakersInfo =(targetUrl)=> {
 	axios.get(targetUrl).then(response => {
 		let $ = cheerio.load(response.data);
@@ -49,11 +54,6 @@ const scrapingSneakersInfo =(targetUrl)=> {
 		// console.log(parsingObjs);
 		updateSneakersJson()
 	});
-}
-
-const updateSneakersJson =()=> {
-	var resultDataFile = fs.createWriteStream(FILEPATH, {flags : 'w+'});
-	resultDataFile.write("sneakers=" + JSON.stringify(parsingObjs));
 }
 
 webScraping();
