@@ -1,8 +1,8 @@
-import { createTransport } from 'nodemailer';
-import smtpTransport from 'nodemailer-smtp-transport';
-import dataHandling from './dataHandling.js';
+const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport');
+const dataHandling = require('./dataHandling.js');
 
-const transporter = createTransport(smtpTransport({
+const transporter = nodemailer.createTransport(smtpTransport({
 	service : "gmail", 
 	host : "smtp.gmail.com",
 	auth :{
@@ -50,14 +50,14 @@ const timeToCronExpression =(timeStr)=> {
 
 // const mailQueue = dataHandling.getMailContents();
 
-// import { schedule as _schedule } from 'node-cron';
+// const cron = require('node-cron');
 // let mailTask;
 // let taskList = [];
 // console.log(`mailQueue : ${mailQueue}`);
 // for(let i=0; i < mailQueue.length; i++){
 // 	let schedule = timeToCronExpression(mailQueue[i].criteria);
 // 	console.log(`schedule : ${schedule}`);
-// 	mailTask = _schedule(schedule, () =>{
+// mailTask = cron.schedule(schedule, () =>{
 		transporter.sendMail(mailOptions, function(err, info){
 			if(err){
 				console.log(err);
