@@ -48,16 +48,16 @@ const timeToCronExpression =(timeStr)=> {
 	return minute+ " " +hour+" * * *";
 }
 
-const mailQueue = dataHandling.getMailContents();
+// const mailQueue = dataHandling.getMailContents();
 
-import { schedule as _schedule } from 'node-cron';
-let mailTask;
-let taskList = [];
-console.log(`mailQueue : ${mailQueue}`);
-for(let i=0; i < mailQueue.length; i++){
-	let schedule = timeToCronExpression(mailQueue[i].criteria);
-	console.log(`schedule : ${schedule}`);
-	mailTask = _schedule(schedule, () =>{
+// import { schedule as _schedule } from 'node-cron';
+// let mailTask;
+// let taskList = [];
+// console.log(`mailQueue : ${mailQueue}`);
+// for(let i=0; i < mailQueue.length; i++){
+// 	let schedule = timeToCronExpression(mailQueue[i].criteria);
+// 	console.log(`schedule : ${schedule}`);
+// 	mailTask = _schedule(schedule, () =>{
 		transporter.sendMail(mailOptions, function(err, info){
 			if(err){
 				console.log(err);
@@ -65,9 +65,9 @@ for(let i=0; i < mailQueue.length; i++){
 				console.log(`Success! ${info.response}`);
 			}
 			console.log(taskList[0])
-			taskList[0].stop();
-			taskList.splice(0,1);
+			// taskList[0].stop();
+			// taskList.splice(0,1);
 		});
-	});
-	taskList.push(mailTask);
-}
+// 	});
+// 	taskList.push(mailTask);
+// }
