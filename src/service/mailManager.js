@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport');
-const dataHandling = require('./dataHandling.js');
+// const dataHandling = require('./dataHandling.js');
 
 const transporter = nodemailer.createTransport(smtpTransport({
 	service : "gmail", 
@@ -33,20 +33,20 @@ const getReceiverList =()=> {
 const mailOptions = {
 	from : 'mcw0219Dev@gmail.com',
 	to : getReceiverList(),
-	subject : 'Nike The Draw!',
+	subject : 'Nike The Draw! - React',
 	html : getMailData()
 };
 
 // 시간을 cron 표기로 변환하는 함수
 // 9시간 계산
-const timeToCronExpression =(timeStr)=> {
-	let hour = Number(timeStr.split(":")[0]);
-	const minute = Number(timeStr.split(":")[1]);
+// const timeToCronExpression =(timeStr)=> {
+// 	let hour = Number(timeStr.split(":")[0]);
+// 	const minute = Number(timeStr.split(":")[1]);
 	
-	hour = hour < 9 ? hour - 9 + 24 : hour = hour - 9;
+// 	hour = hour < 9 ? hour - 9 + 24 : hour = hour - 9;
 
-	return minute+ " " +hour+" * * *";
-}
+// 	return minute+ " " +hour+" * * *";
+// }
 
 // const mailQueue = dataHandling.getMailContents();
 
@@ -64,7 +64,7 @@ const timeToCronExpression =(timeStr)=> {
 			}else{
 				console.log(`Success! ${info.response}`);
 			}
-			console.log(taskList[0])
+			// console.log(taskList[0])
 			// taskList[0].stop();
 			// taskList.splice(0,1);
 		});
