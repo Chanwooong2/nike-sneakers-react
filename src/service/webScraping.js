@@ -6,19 +6,6 @@ const BASE_URL = "https://www.nike.com";
 const FILEPATH = "../data/sneakersInformation.json"
 let parsingObjs = [];
 
-const webScraping =()=> {
-	scrapingDetailPage(BASE_URL + "/kr/launch/?type=upcoming&activeDate=date-filter:AFTER_DATE");
-}
-
-const scrapingDetailPage =(url)=> {
-	axios.get(url).then(response => {
-		const $ = cheerio.load(response.data);
-		$(".item-list-wrap li.pb2-sm a:contains('THE DRAW 진행예정')").each((index, element) =>{
-			scrapingSneakersInfo(BASE_URL + $(element).attr('href'));
-		});
-	});
-}
-
 const updateSneakersJson =()=> {
 	var resultDataFile = fs.createWriteStream(FILEPATH, {flags : 'w+'});
 	resultDataFile.write(JSON.stringify(parsingObjs));
@@ -54,6 +41,19 @@ const scrapingSneakersInfo =(targetUrl)=> {
 		// console.log(parsingObjs);
 		updateSneakersJson()
 	});
+}
+
+const scrapingDetailPage =(url)=> {
+	axios.get(url).then(response => {
+		const $ = cheerio.load(response.data);
+		$(".item-list-wrap li.pb2-sm a:contains('THE DRAW 진행예정')").each((index, element) =>{
+			scrapingSneakersInfo(BASE_URL + $(element).attr('href'));
+		});
+	});
+}
+
+const webScraping =()=> {
+	scrapingDetailPage(BASE_URL + "/kr/launch/?type=upcoming&activeDate=date-filter:AFTER_DATE");
 }
 
 webScraping();
