@@ -1,4 +1,4 @@
-name: Update information & Deploy
+name: Update information
 
 on:
   push:
@@ -54,6 +54,3 @@ jobs:
         cd src
         cd service
         node mailManager.js
-
-    - name: Deploy
-      run: yarn deploy
