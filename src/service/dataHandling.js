@@ -1,11 +1,3 @@
-const getMailContents =()=> {
-    const sneakers = getSneakersJsonData();
-    const todaySneakers = getTodaySneakersList(sneakers);
-    const mailQueue = getMailQueue(todaySneakers);
-    
-    return mailQueue;
-}
-
 const getSneakersJsonData =()=> {
     const sneakers = require('../data/sneakersInformation.json');
     // 시간순 정렬
@@ -58,4 +50,12 @@ const getMailQueue =(todaySneakers)=> {
     return mailQueue;
 }
 
-export default {getMailContents, getSneakersJsonData};
+const getMailContents =()=> {
+    const sneakers = getSneakersJsonData();
+    const todaySneakers = getTodaySneakersList(sneakers);
+    const mailQueue = getMailQueue(todaySneakers);
+    
+    return mailQueue;
+}
+
+export default getMailContents;
