@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport');
-// const dataHandling = require('./dataHandling.js');
+const dataHandling = require('./dataHandling.js');
 
 const transporter = nodemailer.createTransport(smtpTransport({
 	service : "gmail", 
