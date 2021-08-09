@@ -39,35 +39,35 @@ const mailOptions = {
 
 // 시간을 cron 표기로 변환하는 함수
 // 9시간 계산
-const timeToCronExpression =(timeStr)=> {
-	let hour = Number(timeStr.split(":")[0]);
-	const minute = Number(timeStr.split(":")[1]);
+// const timeToCronExpression =(timeStr)=> {
+// 	let hour = Number(timeStr.split(":")[0]);
+// 	const minute = Number(timeStr.split(":")[1]);
 	
-	hour = hour < 9 ? hour - 9 + 24 : hour = hour - 9;
+// 	hour = hour < 9 ? hour - 9 + 24 : hour = hour - 9;
 
-	return minute+ " " +hour+" * * *";
-}
+// 	return minute+ " " +hour+" * * *";
+// }
 
-const mailQueue = dataHandling.getMailContents();
+// const mailQueue = dataHandling.getMailContents();
 
-const cron = require('node-cron');
-let mailTask;
-let taskList = [];
-console.log(`mailQueue : ${mailQueue}`);
-for(let i=0; i < mailQueue.length; i++){
-	let schedule = timeToCronExpression(mailQueue[i].criteria);
-	console.log(`schedule : ${schedule}`);
-mailTask = cron.schedule(schedule, () =>{
+// const cron = require('node-cron');
+// let mailTask;
+// let taskList = [];
+// console.log(`mailQueue : ${mailQueue}`);
+// for(let i=0; i < mailQueue.length; i++){
+// 	let schedule = timeToCronExpression(mailQueue[i].criteria);
+// 	console.log(`schedule : ${schedule}`);
+// mailTask = cron.schedule(schedule, () =>{
 		transporter.sendMail(mailOptions, function(err, info){
 			if(err){
 				console.log(err);
 			}else{
 				console.log(`Success! ${info.response}`);
 			}
-			console.log(taskList[0])
-			taskList[0].stop();
-			taskList.splice(0,1);
+			// console.log(taskList[0])
+			// taskList[0].stop();
+			// taskList.splice(0,1);
 		});
-	});
-	taskList.push(mailTask);
-}
+// 	});
+// 	taskList.push(mailTask);
+// }
