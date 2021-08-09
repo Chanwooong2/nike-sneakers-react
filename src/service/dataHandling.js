@@ -58,4 +58,4 @@ const getMailContents =()=> {
     return mailQueue;
 }
 
-export default getMailContents;
+module.exports.getMailContents  = getMailContents;

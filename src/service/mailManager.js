@@ -49,6 +49,7 @@ const timeToCronExpression =(timeStr)=> {
 }
 
 const mailQueue = dataHandling.getMailContents();
+console.log(mailQueue);
 
 const cron = require('node-cron');
 let mailTask;
