@@ -56,4 +56,6 @@ jobs:
         node mailManager.js
 
     - name: Deploy
-      run: yarn deploy
+      run: |
+        yarn build
+        yarn deploy
