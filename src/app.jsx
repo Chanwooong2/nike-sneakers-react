@@ -5,7 +5,7 @@ import sneakersJsonData from './data/sneakersInformation.json'
 
 function App() {
 
-  const [sneakerList, setSneakers] = useState(sneakersJsonData);
+  const [sneakerList] = useState(sneakersJsonData);
 
   return (
     <>
