@@ -60,7 +60,14 @@ jobs:
       uses: actions/checkout@main
 
     - name: Install Dependencies    # 의존 파일 설치
-      run: npm install
+      run: yarn install
 
     - name: Build                   # React Build
-      run: npm run build
+      run: yarn run build
+      
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+
