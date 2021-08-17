@@ -55,7 +55,12 @@ jobs:
         cd service
         node mailManager.js
 
-    - name: Deploy
-      run: |
-        yarn build
-        yarn deploy
+
+    - name: Checkout source code.   # 레포지토리 체크아웃
+      uses: actions/checkout@main
+
+    - name: Install Dependencies    # 의존 파일 설치
+      run: npm install
+
+    - name: Build                   # React Build
+      run: npm run build
