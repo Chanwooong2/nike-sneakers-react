@@ -1,4 +1,4 @@
-name: Update information & Deploy
+name: Update information
 
 on:
   push:
@@ -31,16 +31,16 @@ jobs:
 
     - name: npm update
       run: npm update --save
-
+      
+    - name: Add variable for Date
+      run: |
+        echo "current_date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+        
     - name: Run script
       run: |
         cd src
         cd service
         node webScraping.js
-      
-    - name: Add variable for Date
-      run: |
-        echo "current_date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
         
     - name: Commit & Push
       uses: Andro999b/push@v1.3
@@ -49,25 +49,8 @@ jobs:
         branch: main
         message: Update ${{ env.current_date }}
 
-    - name: Test for Sending E-mail
+    - name: Sending E-mail
       run: |
         cd src
         cd service
         node mailManager.js
-
-
-    - name: Checkout source code.   # 레포지토리 체크아웃
-      uses: actions/checkout@main
-
-    - name: Install Dependencies    # 의존 파일 설치
-      run: yarn install
-
-    - name: Build                   # React Build
-      run: yarn run build
-      
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
-
